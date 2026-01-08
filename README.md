@@ -3,8 +3,8 @@
 A **practical, interview-oriented, and real-world focused** guide to mastering **Low Level Design (LLD)** and **Design Patterns** using **Golang**.
 
 This repository is designed for:
-- Backend engineers
-- Go developers
+- Backend development
+- Go development
 - Interview preparation (Product & Startup companies)
 - Writing clean, scalable, and maintainable systems
 

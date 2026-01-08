@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/souvikjs01/LLD/strategyDesignPattern/example"
+)
 
 type PaymentStrategy interface {
 	Pay(amount float64) error
@@ -59,4 +63,29 @@ func main() {
 
 	payment.SetStrategy(&PaypalPayment{"svk@gmail.com"})
 	payment.Pay(999)
+
+	fmt.Println("---------------Second Example-------------")
+
+	// db := &example.DBService{}
+
+	// db.SetDatabase(&example.MongoDB{MongoUri: "mongo uri-hhdkfhf"})
+	// db.Connect()
+
+	// db.SetDatabase(&example.PostgresDB{PgUri: "postgres uri-dhjsahgdgh"})
+	// db.Connect()
+
+	// db.SetDatabase(&example.Redis{RedisUri: "redis uri-dhdhfdgcvdgfhghd"})
+	// db.Connect()
+
+	mgConn := &example.MongoDB{}
+	conn1 := example.DBService{DBConnection: mgConn}
+	conn1.Connect()
+
+	pgConn := &example.PostgresDB{}
+	conn2 := example.DBService{DBConnection: pgConn}
+	conn2.Connect()
+
+	rdsConn := &example.Redis{}
+	conn3 := example.DBService{DBConnection: rdsConn}
+	conn3.Connect()
 }
