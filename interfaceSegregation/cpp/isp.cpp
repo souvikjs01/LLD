@@ -9,6 +9,7 @@
 using namespace std;
 
 // Not following ISP
+/*
 class Shape {
 public:
     virtual double area() = 0;
@@ -84,6 +85,81 @@ int main() {
         cout << "Exception " << e.what() << endl;
     }
     
+    
+    return 0;
+}
+*/
+
+
+// Following ISP:----------
+
+class TwoDShape {
+public:
+    virtual double area() = 0;
+};
+
+class ThreeDShape {
+public:
+    virtual double area() = 0;
+    virtual double volume() = 0;
+};
+
+class Cube : public ThreeDShape {
+private:
+    double side;
+public:
+    Cube(double side) {
+        this->side = side;
+    }
+
+    double area() override {
+        return 6 * side * side;
+    }
+    double volume() override {
+        return side * side * side;
+    }
+};
+
+class Square : public TwoDShape {
+private:
+    double side;
+
+public:
+    Square(double side) {
+        this->side = side;
+    }
+
+    double area() override {
+        return side*side;
+    }
+};
+
+class Rectangle : public TwoDShape {
+private:
+    double length;
+    double height;
+public:
+    Rectangle(double length, double height) {
+        this->length = length;
+        this->height = height;
+    }
+
+    double area() override {
+        return length * height;
+    }
+};
+
+int main() {
+    TwoDShape* sqr = new Square(5.0);
+    TwoDShape* rect = new Rectangle(8, 4);
+    ThreeDShape* cube = new Cube(5);
+
+    cout << "Square area: " << sqr->area() << endl;
+    
+    cout << "Rectangle area: " << rect->area() << endl;
+    
+    cout << "Cube area: " << cube->area() << endl;
+    cout << "Cube volume: " << cube->volume() << endl;
     
     return 0;
 }
