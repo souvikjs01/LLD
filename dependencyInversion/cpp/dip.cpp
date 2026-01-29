@@ -7,7 +7,7 @@
 using namespace std;
 
 // DIP violated:--------
-
+/*
 class SqlDatabase {
 public:
     void saveToSQLdb(string data) {
@@ -39,6 +39,54 @@ int main() {
     UserService us;
     us.saveUserDataToSql("Alex");
     us.saveUserDataToMongoDb("Alex");
+
+    return 0;
+}
+*/
+
+
+// DIP followed:----------
+
+class Database {
+public:
+    virtual void save(string data) = 0;
+};
+
+class SqlDatabase : public Database {
+public:
+    void save(string data) override {
+        cout << "Saving data: " << data << " to sql database" << endl;
+    }
+};
+
+class MongoDatabase : public Database {
+public:
+    void save(string data) override {
+        cout << "Saving data: " << data << " to mongo database" << endl;
+    }
+};
+
+class UserService {
+private:
+    Database* db;
+public:
+    UserService(Database* db) {
+        this->db = db;
+    }
+    void saveUserData(string user) {
+        db->save(user);
+    }
+};
+
+int main() {
+    SqlDatabase pgdb;
+    MongoDatabase mgdb;
+
+    UserService service1(&pgdb);
+    service1.saveUserData("Pedri");
+
+    UserService service2(&mgdb);
+    service2.saveUserData("De Jong");
 
     return 0;
 }
