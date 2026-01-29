@@ -2,7 +2,7 @@
 #include<mutex>
 
 using namespace std;
-
+/*
 class Singleton {
 private:
     static Singleton* instance;
@@ -25,6 +25,35 @@ public:
 
 Singleton* Singleton::instance = nullptr;
 mutex Singleton::mtx;
+
+int main() {
+    Singleton* s1 = Singleton::getInstance();
+    Singleton* s2 = Singleton::getInstance();
+
+    cout << (s1 == s2) << endl;
+
+    return 0;
+}
+*/
+
+
+class Singleton {
+private:
+    static Singleton* instance;
+
+    Singleton() {
+        cout << "Singleton construction called" << endl;
+    }
+public:
+    static Singleton* getInstance() {
+        if(!instance) {
+            instance = new Singleton();
+        }        
+        return instance;
+    }
+};
+
+Singleton* Singleton::instance = nullptr;
 
 int main() {
     Singleton* s1 = Singleton::getInstance();
