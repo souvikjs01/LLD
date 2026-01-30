@@ -24,6 +24,7 @@ public:
         }
         items.push_back(it);
     }
+
     double getTotalCost() const {
         double sum = 0;
         for (const auto& it : items) {
@@ -31,17 +32,25 @@ public:
         }
         return sum;
     }
+
     bool isEmpty() {
         return (!res || items.empty()); 
+    }
+
+    void clear() {
+        items.clear();
+        res = nullptr;
     }
 
     // getter setter
     void setRestaurant(Restaurant* r) {
         res = r;
     }
+
     Restaurant* getRestaurant() const {
         return res;
     }
+
     const vector<MenuItem>& getItems() const {
         return items;
     }
