@@ -40,10 +40,10 @@ int main() {
 class Singleton {
 private:
     static Singleton* instance;
-
     Singleton() {
         cout << "Singleton construction called" << endl;
     }
+
 public:
     static Singleton* getInstance() {
         if(!instance) {
@@ -51,6 +51,11 @@ public:
         }        
         return instance;
     }
+
+    static void destroyInstance() {
+        delete instance;
+        instance = nullptr;
+    } 
 };
 
 Singleton* Singleton::instance = nullptr;
@@ -60,6 +65,8 @@ int main() {
     Singleton* s2 = Singleton::getInstance();
 
     cout << (s1 == s2) << endl;
+
+    Singleton::destroyInstance();
 
     return 0;
 }
