@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/souvikjs01/LLD/strategyDesignPattern/example"
+	"github.com/souvikjs01/LLD/strategyDesignPattern/go/example"
 )
 
 type PaymentStrategy interface {
